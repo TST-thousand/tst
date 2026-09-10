@@ -1,23 +1,10 @@
 "use client";
-import { assitantsAiItems } from "@/src/data/assitantsAi";
-import { useEffect, useState } from "react";
-import { Patua_One } from "next/font/google";
 
-const patuaOne = Patua_One({
-  subsets: ["latin"],
-  weight: "400",
-});
+import { useState } from "react";
+import Image from "next/image";
 
 export function MainHeroSection() {
-  const [index, setIndex] = useState(0);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIndex((prev) => (prev + 1) % assitantsAiItems.length);
-    }, 2500);
-    return () => clearInterval(intervalId);
-  }, []);
 
   return (
     <>
@@ -29,6 +16,7 @@ export function MainHeroSection() {
                 className="text-change_wrap interactive-title"
                 onMouseMove={(event) => {
                   const rect = event.currentTarget.getBoundingClientRect();
+
                   setTilt({
                     x: ((event.clientX - rect.left) / rect.width - 0.5) * 8,
                     y: ((event.clientY - rect.top) / rect.height - 0.5) * 6,
@@ -36,26 +24,33 @@ export function MainHeroSection() {
                 }}
                 onMouseLeave={() => setTilt({ x: 0, y: 0 })}
               >
-                {assitantsAiItems.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className={`text-change_rotating ${patuaOne.className} ${idx === index ? "active" : ""}`}
+                <div
+                  className="text-change_rotating active"
+                  style={{
+                    transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)
+                      rotateX(${-tilt.y * 0.35}deg)
+                      rotateY(${tilt.x * 0.35}deg)`,
+                  }}
+                >
+                  <Image
+                    src="/assets/images/logo/test3.png"
+                    alt="TST LLC"
+                    width={500}
+                    height={180}
+                    priority
                     style={{
-                      transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0) rotateX(${-tilt.y * 0.35}deg) rotateY(${tilt.x * 0.35}deg)`,
-                      fontSize: "clamp(78px, 8vw, 130px)",
-                      lineHeight: "1.05",
-                      textShadow: "0 0 60px rgba(120, 170, 255, 0.35)",
-                      color: "#F4F7F5",
+                      width: "min(700px, 100vw)",
+                      height: "auto",
                     }}
-                  >
-                    TST LLC
-                  </div>
-                ))}
+                  />
+                </div>
               </div>
             </h1>
           </div>
         </div>
+
         <span className="br-line"></span>
+
         <div className="container">
           <div className="sect-content position-relative">
             <BoxAskWrap />
