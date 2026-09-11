@@ -1,16 +1,17 @@
 type SectTaglineProps = {
   name: string;
+  prominent?: boolean;
 };
 
-export function SectTagline({ name }: SectTaglineProps) {
+export function SectTagline({ name, prominent = false }: SectTaglineProps) {
   return (
     <>
       <div className="sect-tagline">
         <div className="container">
           <div className="sect-tagline_inner">
-            <span className="hafl-plus pst-left_bot wow bounceInScale"></span>
-            <span className="hafl-plus pst-right_bot wow bounceInScale"></span>
-            <p className="s-name text-caption font-2">
+            <p
+              className={`s-name text-caption font-2${prominent ? " is-prominent" : ""}`}
+            >
               <span className="bar-group type-left">
                 <span className="bar_center"></span>
               </span>

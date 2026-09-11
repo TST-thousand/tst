@@ -15,8 +15,6 @@ export default function PageTitle({ name }: PageTitleProps) {
         <div className="sect-tagline">
           <div className="container">
             <div className="sect-tagline_inner">
-              <span className="hafl-plus pst-left_bot wow bounceInScale"></span>
-              <span className="hafl-plus pst-right_bot wow bounceInScale"></span>
               <div className="s-name text-caption font-2">
                 <span className="bar-group type-left">
                   <span className="bar_center"></span>

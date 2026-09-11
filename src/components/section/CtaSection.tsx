@@ -61,10 +61,6 @@ export function MainCtaSection() {
               </div>
             </div>
           </div>
-          <div className="position-relative has-hafl_plus">
-            <span className="hafl-plus pst-left_bot item_bot wow bounceInScale"></span>
-            <span className="hafl-plus pst-right_bot item_bot wow bounceInScale"></span>
-          </div>
         </div>
       </div>
     </>

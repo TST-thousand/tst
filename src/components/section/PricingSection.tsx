@@ -1,6 +1,5 @@
 import { SectHeader } from "@components/section/SectHeader";
 import { SectTagline } from "@components/section/SectTagline";
-import { SectBottom } from "@components/section/SectBottom";
 import { plans } from "@data/plan";
 import classNames from "classnames";
 import Link from "next/link";
@@ -94,8 +93,6 @@ export function MainPricingSection() {
                 </div>
               </div>
             ))}
-            <span className="hafl-plus pst-left_bot item_bot wow bounceInScale"></span>
-            <span className="hafl-plus pst-right_bot item_bot wow bounceInScale"></span>
           </div>
         </div>
       </div>

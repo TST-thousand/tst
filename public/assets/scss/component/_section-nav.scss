@@ -1,0 +1,54 @@
+.section-nav-indicator {
+  position: fixed;
+  top: 50%;
+  right: 36px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 12px;
+  border-radius: 12px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  transform: translateY(-50%);
+}
+
+.section-nav-indicator:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.section-nav-indicator__pill {
+  width: 8px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition:
+    width 0.3s ease,
+    height 0.3s ease,
+    border-radius 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.section-nav-indicator:hover .section-nav-indicator__pill {
+  width: 32px;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.section-nav-indicator__pill.is-active {
+  background-color: var(--white);
+}
+
+.section-nav-indicator:hover .section-nav-indicator__pill.is-active {
+  background-color: var(--white);
+}
+
+@media (max-width: 991px) {
+  .section-nav-indicator {
+    display: none;
+  }
+}

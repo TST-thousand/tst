@@ -2,8 +2,21 @@
 
 import { Product, products } from "@/src/data/products";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+
+const EQUIPMENT_TABS = ["Камер", "Switch", "Рак"] as const;
+type EquipmentTab = (typeof EQUIPMENT_TABS)[number];
+
+function getEquipmentTab(category: string): EquipmentTab {
+  const normalized = category.toLowerCase();
+  if (normalized.includes("switch") || normalized.includes("свич")) {
+    return "Switch";
+  }
+  if (normalized.includes("рак") || normalized.includes("rack")) {
+    return "Рак";
+  }
+  return "Камер";
+}
 
 function matchesQuery(product: Product, query: string) {
   const searchableText = [
@@ -19,12 +32,105 @@ function matchesQuery(product: Product, query: string) {
   return searchableText.includes(query.toLowerCase().trim());
 }
 
+function parsePrice(price: string) {
+  return Number(price.replace(/[^\d]/g, "")) || 0;
+}
+
+function formatPrice(value: number) {
+  return value.toLocaleString("en-US");
+}
+
 export default function ProductCatalog() {
+  const [activeTab, setActiveTab] = useState<EquipmentTab>("Камер");
   const [query, setQuery] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [priceMin, setPriceMin] = useState("");
+  const [priceMax, setPriceMax] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const filteredProducts = useMemo(
-    () => products.filter((product) => matchesQuery(product, query)),
-    [query],
+
+  const tabProducts = useMemo(
+    () => products.filter((product) => getEquipmentTab(product.category) === activeTab),
+    [activeTab],
+  );
+
+  const availableCategories = useMemo(
+    () => Array.from(new Set(tabProducts.map((product) => product.category))),
+    [tabProducts],
+  );
+
+  const filteredProducts = useMemo(() => {
+    const min = priceMin ? Number(priceMin) : null;
+    const max = priceMax ? Number(priceMax) : null;
+
+    return tabProducts.filter((product) => {
+      if (!matchesQuery(product, query)) return false;
+      if (
+        selectedCategories.length &&
+        !selectedCategories.includes(product.category)
+      ) {
+        return false;
+      }
+      const priceValue = parsePrice(product.price);
+      if (min !== null && priceValue < min) return false;
+      if (max !== null && priceValue > max) return false;
+      return true;
+    });
+  }, [tabProducts, query, selectedCategories, priceMin, priceMax]);
+
+  const handleTabChange = (tab: EquipmentTab) => {
+    setActiveTab(tab);
+    setSelectedCategories([]);
+  };
+
+  const toggleCategory = (category: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((item) => item !== category)
+        : [...prev, category],
+    );
+  };
+
+  const clearCategoryFilter = () => {
+    setSelectedCategories([]);
+  };
+
+  const clearPriceFilter = () => {
+    setPriceMin("");
+    setPriceMax("");
+  };
+
+  const clearAllFilters = () => {
+    setSelectedCategories([]);
+    clearPriceFilter();
+  };
+
+  const priceRangeLabel = useMemo(() => {
+    if (!priceMin && !priceMax) return "";
+    if (priceMin && priceMax) {
+      return `${formatPrice(Number(priceMin))}₮ - ${formatPrice(Number(priceMax))}₮`;
+    }
+    if (priceMin) return `${formatPrice(Number(priceMin))}₮ дээш`;
+    return `${formatPrice(Number(priceMax))}₮ хүртэл`;
+  }, [priceMin, priceMax]);
+
+  const activeFilterChips = useMemo(
+    () => [
+      ...selectedCategories.map((category) => ({
+        key: `category-${category}`,
+        label: category,
+        onRemove: () => toggleCategory(category),
+      })),
+      ...(priceRangeLabel
+        ? [
+            {
+              key: "price-range",
+              label: priceRangeLabel,
+              onRemove: clearPriceFilter,
+            },
+          ]
+        : []),
+    ],
+    [selectedCategories, priceRangeLabel],
   );
 
   useEffect(() => {
@@ -56,7 +162,24 @@ export default function ProductCatalog() {
         <div className="content-1200">
           <div className="product-catalog__toolbar">
             <div>
-              <p className="text-body-3">Хяналтын камер</p>
+              <div
+                className="product-catalog__tabs"
+                role="tablist"
+                aria-label="Тоног төхөөрөмжийн төрөл"
+              >
+                {EQUIPMENT_TABS.map((tab) => (
+                  <button
+                    key={tab}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeTab === tab}
+                    className={`tf-btn-tab${activeTab === tab ? " active" : ""}`}
+                    onClick={() => handleTabChange(tab)}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
               <h2 className="font-3 h3 text-linear">Бүтээгдэхүүний төрөл</h2>
             </div>
             <label className="product-search" htmlFor="product-search">
@@ -70,6 +193,100 @@ export default function ProductCatalog() {
               />
             </label>
           </div>
+
+          <div className="product-filters">
+            <div className="product-filter">
+              <div className="product-filter__header">
+                <span className="product-filter__label">Загвар</span>
+                <button
+                  type="button"
+                  className="product-filter__clear"
+                  onClick={clearCategoryFilter}
+                  disabled={!selectedCategories.length}
+                >
+                  Арилгах
+                </button>
+              </div>
+              <div className="product-filter__options">
+                {availableCategories.length ? (
+                  availableCategories.map((category) => (
+                    <label className="product-filter__checkbox" key={category}>
+                      <input
+                        type="checkbox"
+                        checked={selectedCategories.includes(category)}
+                        onChange={() => toggleCategory(category)}
+                      />
+                      <span>{category}</span>
+                    </label>
+                  ))
+                ) : (
+                  <span className="product-filter__empty">
+                    Энэ ангилалд загвар алга
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="product-filter">
+              <div className="product-filter__header">
+                <span className="product-filter__label">Үнийн дүн</span>
+                <button
+                  type="button"
+                  className="product-filter__clear"
+                  onClick={clearPriceFilter}
+                  disabled={!priceMin && !priceMax}
+                >
+                  Арилгах
+                </button>
+              </div>
+              <div className="product-filter__range">
+                <input
+                  type="number"
+                  inputMode="numeric"
+                  min={0}
+                  placeholder="Min"
+                  value={priceMin}
+                  onChange={(event) => setPriceMin(event.target.value)}
+                />
+                <span className="product-filter__range-sep">—</span>
+                <input
+                  type="number"
+                  inputMode="numeric"
+                  min={0}
+                  placeholder="Max"
+                  value={priceMax}
+                  onChange={(event) => setPriceMax(event.target.value)}
+                />
+                <span className="product-filter__range-unit">₮</span>
+              </div>
+            </div>
+          </div>
+
+          {activeFilterChips.length > 0 && (
+            <div className="product-catalog__chips">
+              {activeFilterChips.map((chip) => (
+                <button
+                  key={chip.key}
+                  type="button"
+                  className="product-chip"
+                  onClick={chip.onRemove}
+                >
+                  {chip.label}
+                  <span aria-hidden="true">×</span>
+                </button>
+              ))}
+              {activeFilterChips.length >= 2 && (
+                <button
+                  type="button"
+                  className="product-chip product-chip--clear"
+                  onClick={clearAllFilters}
+                >
+                  Бүгдийг цуцлах
+                </button>
+              )}
+            </div>
+          )}
+
           {filteredProducts.length ? (
             <>
               <div className="product-grid">
@@ -116,7 +333,7 @@ export default function ProductCatalog() {
               </div> */}
             </>
           ) : (
-            <p className="product-empty text-body-1">No products found</p>
+            <p className="product-empty text-body-1">Бүтээгдэхүүн олдсонгүй</p>
           )}
         </div>
       </div>

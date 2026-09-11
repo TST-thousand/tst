@@ -60,8 +60,8 @@
   min-height: 48px;
 
   img {
-    width: 240px;
-    height: auto;
+    width: 64px;
+    height: 64px;
   }
 }
 
@@ -81,15 +81,23 @@
     flex-wrap: wrap;
   }
   .footer-logo img {
-    width: 190px;
+    width: 44px;
+    height: 44px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
     .footer-navigation { gap: 24px; }
     .footer-navigation__left { gap: 20px; }
-    .footer-logo img { width: 190px; }
+    .footer-logo img { width: 52px; height: 52px; }
     .footer-heading { min-width: auto; }
+}
+
+@media (min-width: 992px) {
+  .footer-logo img {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 .footer-col-block {
@@ -126,7 +134,7 @@
   gap: 24px;
 
   @include res(md) {
-    gap: 12px;
+    gap: 18px;
   }
 }
 

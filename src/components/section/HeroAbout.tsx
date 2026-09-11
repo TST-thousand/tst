@@ -100,7 +100,7 @@
 //               </div>
 //             </div>
 //             <div className="col-lg-5 offset-lg-1">
-//               <ScrollColorText className="h4 font-3 px-16 px-lg-0 hero-about__statement">
+//               <ScrollColorText className="font-3 px-16 px-lg-0 hero-about__statement">
 //                 Хувь хүн болон, албан байгууллагын үйл ажиллагааны хэрэгцээ
 //                 шаардлагад нийцсэн программ хангамж, тоног төхөөрөмжийн
 //                 нийлүүлэлт, угсралт, суурилуулалт, тохиргоо, засвар үйлчилгээ
@@ -117,12 +117,6 @@
 import Image from "next/image";
 import ScrollColorText from "../common/ScrollColorText";
 // import { Patua_One } from "next/font/google";
-import { Black_Ops_One } from "next/font/google";
-
-const blackOpsOne = Black_Ops_One({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 export default function HeroAbout() {
   return (
@@ -164,8 +158,7 @@ export default function HeroAbout() {
                   />
                 </div>
               </div>
-              ```
-              <div className="image px-16 px-lg-0">
+              {/* <div className="image px-16 px-lg-0">
                 <Image
                   loading="lazy"
                   width={1078}
@@ -173,52 +166,70 @@ export default function HeroAbout() {
                   src="/assets/images/item/kk.jpg"
                   alt="Image"
                 />
-              </div>
+              </div> */}
             </div>
-            <div className="col-lg-4 offset-lg-1">
+            <div className="col-md-4 offset-md-1 hero-about__brands-col">
               <div className="px-16 px-lg-0">
-                <div className="rate-per">
+                {/* <div className="rate-per">
                   <p className="text-main-3">
                     <span className="fw-bold text-main-5">(4.9/</span>.5.0)
                   </p>
-                </div>
-                <h5 className="title-2 text-linear-2 font-3">
+                </div> */}
+                {/* <h5 className="title-2 text-linear-2 font-3">
                   10000 гаруй хэрэглэгчдийн итгэлийг хүлээсэн <br />
-                </h5>
+                </h5> */}
                 <div className="brand-wrap mb-lg-0">
                   <Image
                     loading="lazy"
-                    width={41}
-                    height={16}
+                    width={120}
+                    height={45}
                     src="/assets/images/brand/brand_1.png"
-                    alt="Brand"
+                    alt="Hikvision"
                   />
                   <Image
                     loading="lazy"
-                    width={81}
-                    height={16}
-                    src="/assets/images/brand/brand_2.png"
-                    alt="Brand"
+                    width={120}
+                    height={59}
+                    src="/assets/images/brand/brand_3.png"
+                    alt="Dahua Technology"
                   />
                   <Image
                     loading="lazy"
-                    width={70}
-                    height={16}
-                    src="/assets/images/brand/brand_1.png"
-                    alt="Brand"
+                    width={120}
+                    height={69}
+                    src="/assets/images/brand/brand2.png"
+                    alt="Uniview Technologies"
                   />
                   <Image
                     loading="lazy"
-                    width={74}
-                    height={16}
-                    src="/assets/images/brand/brand_2.png"
-                    alt="Brand"
+                    width={120}
+                    height={45}
+                    src="/assets/images/brand/brand1.png"
+                    alt="Hikvision"
+                  />
+                  <Image
+                    loading="lazy"
+                    width={120}
+                    height={59}
+                    src="/assets/images/brand/brand3.png"
+                    alt="Dahua Technology"
+                  />
+                  <Image
+                    loading="lazy"
+                    width={120}
+                    height={69}
+                    src="/assets/images/brand/brand4.png"
+                    alt="Uniview Technologies"
                   />
                 </div>
               </div>
             </div>
-            <div className="col-lg-5 offset-lg-1">
-              <ScrollColorText className="h4 font-3 px-16 px-lg-0 hero-about__statement">
+            <div className="col-md-5 offset-md-1 hero-about__statement-col">
+              <ScrollColorText
+                className="font-3 px-16 px-lg-0 hero-about__statement"
+                startColor="#ffffff"
+                endColor="#ffffff"
+              >
                 Хувь хүн болон, албан байгууллагын үйл ажиллагааны хэрэгцээ
                 шаардлагад нийцсэн программ хангамж, тоног төхөөрөмжийн
                 нийлүүлэлт, угсралт, суурилуулалт, тохиргоо, засвар үйлчилгээ

@@ -1,6 +1,5 @@
 import { SectHeader } from "@/src/components/section/SectHeader";
 import { SectTagline } from "@/src/components/section/SectTagline";
-import { SectBottom } from "@/src/components/section/SectBottom";
 import { faqItems } from "@data/faq";
 import { Fragment } from "react";
 
@@ -71,12 +70,6 @@ export function MainFaqSection({ showDecoration = true }: MainFaqSectionProps) {
               </div>
             </div>
           </div>
-          {showDecoration && (
-            <div className="position-relative has-hafl_plus">
-              <span className="hafl-plus pst-left_bot item_bot wow bounceInScale"></span>
-              <span className="hafl-plus pst-right_bot item_bot wow bounceInScale"></span>
-            </div>
-          )}
         </div>
       </div>
     </>

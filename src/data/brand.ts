@@ -9,7 +9,7 @@ export const brandItems: brandItem[] = [
     width: 100,
   },
   {
-    image: "/assets/images/brand/brand_2.png",
+    image: "/assets/images/brand/brand2.png",
     width: 100,
   },
   {
@@ -17,7 +17,23 @@ export const brandItems: brandItem[] = [
     width: 100,
   },
   {
-    image: "/assets/images/brand/brand_2.png",
+    image: "/assets/images/brand/brand1.png",
+    width: 100,
+  },
+  {
+    image: "/assets/images/brand/brand2.png",
+    width: 100,
+  },
+  {
+    image: "/assets/images/brand/brand3.png",
+    width: 100,
+  },
+  {
+    image: "/assets/images/brand/brand4.png",
+    width: 100,
+  },
+  {
+    image: "/assets/images/brand/brand2.png",
     width: 100,
   },
   {
@@ -25,31 +41,15 @@ export const brandItems: brandItem[] = [
     width: 100,
   },
   {
+    image: "/assets/images/brand/brand4.png",
+    width: 100,
+  },
+  {
+    image: "/assets/images/brand/brand3.png",
+    width: 100,
+  },
+  {
     image: "/assets/images/brand/brand_3.png",
-    width: 100,
-  },
-  {
-    image: "/assets/images/brand/brand_2.png",
-    width: 100,
-  },
-  {
-    image: "/assets/images/brand/brand_1.png",
-    width: 100,
-  },
-  {
-    image: "/assets/images/brand/brand_2.png",
-    width: 100,
-  },
-  {
-    image: "/assets/images/brand/brand_1.png",
-    width: 100,
-  },
-  {
-    image: "/assets/images/brand/brand_2.png",
-    width: 100,
-  },
-  {
-    image: "/assets/images/brand/brand_1.png",
     width: 100,
   },
 ];

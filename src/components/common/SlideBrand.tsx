@@ -1,13 +1,8 @@
 "use client";
-import dynamic from "next/dynamic";
 import { brandItems } from "@data/brand";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import Image from "next/image";
-
-const OdometerComponent = dynamic(() => import("@components/common/Odometer"), {
-  ssr: false,
-});
 
 export default function SlideBrand() {
   return (
@@ -17,8 +12,6 @@ export default function SlideBrand() {
           <div className="tf-brand_inner">
             <h5 className="title text-caption font-2 letter-space-0 fw-normal wg-counter wow fadeInUp">
               Хамтрагч байгууллагууд
-              {/* <OdometerComponent value={6000} />+ HIGHLY
-              PRODUCTIVE COMPANY */}
             </h5>
             <div className=" infiniteslide_wrap">
               <div className="infiniteSlide_brand z-1">
@@ -51,8 +44,6 @@ export default function SlideBrand() {
                 </Swiper>
               </div>
             </div>
-            <span className="hafl-plus pst-left_bot item_bot wow bounceInScale z-1"></span>
-            <span className="hafl-plus pst-right_bot item_bot wow bounceInScale z-1"></span>
           </div>
         </div>
       </div>

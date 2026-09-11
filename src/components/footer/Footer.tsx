@@ -1,4 +1,3 @@
-import { SectHeader } from "@/src/components/section/SectHeader";
 import FooterColumn from "./FooterColumn";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +6,7 @@ export default function Footer() {
   return (
     <>
       <footer className="tf-footer">
-        <SectHeader value={7} label="FOOTER" />
+        {/* <SectHeader value={7} label="FOOTER" /> */}
         <span className="br-line"></span>
         <FooterBody />
       </footer>
@@ -46,6 +45,7 @@ export function FooterBody() {
                 />
               </svg>
             </div>
+
             <FooterInnerLink />
             <span className="br-line has-dot"></span>
             <div className="footer-inner_bottom">
@@ -70,8 +70,8 @@ export function FooterInnerLink() {
         <FooterColumn
           className="m-0"
           links={[
-            { label: "Нууцлалын бодлого", href: "#" },
-            { label: "Үйлчилгээний нөхцөл", href: "#" },
+            { label: "Нууцлалын бодлого", href: "/privacy-policy" },
+            { label: "Үйлчилгээний нөхцөл", href: "/terms-of-service" },
           ]}
         />
       </div>
@@ -84,9 +84,8 @@ export function FooterInnerLink() {
           <Image
             src="/assets/images/logo/logo2.png"
             alt="TST"
-            style={{ width: "auto", height: "auto" }}
-            width={240}
-            height={64}
+            width={128}
+            height={128}
             className="lazyload"
             priority
           />

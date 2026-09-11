@@ -1,10 +1,8 @@
 import { SectHeader } from "@components/section/SectHeader";
 import { SectTagline } from "@components/section/SectTagline";
-import { SectBottom } from "@components/section/SectBottom";
 import { testimonialItems } from "@data/testimonial";
 import CobeGlobe from "@components/common/CobeGlobe";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function TestimonialSection() {
   return (

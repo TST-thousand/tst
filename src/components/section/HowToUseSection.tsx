@@ -1,6 +1,5 @@
 import { SectHeader } from "@components/section/SectHeader";
 import { SectTagline } from "@components/section/SectTagline";
-import { SectBottom } from "@components/section/SectBottom";
 import MainHowSection from "./mainSection/MainHowSection";
 
 export default function HowToUseSection() {
@@ -9,7 +8,7 @@ export default function HowToUseSection() {
       <section className="section-how-to" id="howToUse">
         <SectHeader value={4} label="HOW TO USE" />
         <span className="br-line"></span>
-        <SectTagline name={"Онцлог ба давуу тал."} />
+        <SectTagline prominent name={"Онцлог ба давуу тал."} />
         <span className="br-line"></span>
         <MainHowSection />
         <span className="br-line"></span>

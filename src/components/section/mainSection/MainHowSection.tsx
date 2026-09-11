@@ -18,12 +18,12 @@ export default function MainHowSection() {
           />
         </div>
         <div className="container">
-          <div className="sect-title wow fadeInUp">
+          {/* <div className="sect-title wow fadeInUp">
             <h2 className="s-title font-3 m-0">
               Давуу тал — <br />
               биднийг сонгох шалтгаан{" "}
             </h2>
-          </div>
+          </div> */}
           <div className="row">
             <div className="col-md-6 offset-xl-1 col-xl-4">
               <div className="tab-content mb-md-0 sticky-top wow fadeInUp">
@@ -86,10 +86,6 @@ export default function MainHowSection() {
                 ))}
               </ul>
             </div>
-          </div>
-          <div className="position-relative has-hafl_plus">
-            <span className="hafl-plus pst-left_bot item_bot wow bounceInScale"></span>
-            <span className="hafl-plus pst-right_bot item_bot wow bounceInScale"></span>
           </div>
         </div>
       </div>

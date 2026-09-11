@@ -8,7 +8,7 @@ export function MainHeroSection() {
 
   return (
     <>
-      <div className="sect-main">
+      <div className="sect-main hero-main">
         <div className="container">
           <div className="sect-title wow fadeInUp">
             <h1 className="s-title font-3">
@@ -27,6 +27,7 @@ export function MainHeroSection() {
                 <div
                   className="text-change_rotating active"
                   style={{
+                    marginTop: "clamp(-40px, -6vw, -80px)",
                     transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)
                       rotateX(${-tilt.y * 0.35}deg)
                       rotateY(${tilt.x * 0.35}deg)`,
@@ -35,11 +36,11 @@ export function MainHeroSection() {
                   <Image
                     src="/assets/images/logo/test3.png"
                     alt="TST LLC"
-                    width={500}
-                    height={180}
+                    width={420}
+                    height={151}
                     priority
                     style={{
-                      width: "min(700px, 100vw)",
+                      width: "min(580px, 100%)",
                       height: "auto",
                     }}
                   />
@@ -50,25 +51,6 @@ export function MainHeroSection() {
         </div>
 
         <span className="br-line"></span>
-
-        <div className="container">
-          <div className="sect-content position-relative">
-            <BoxAskWrap />
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
-
-export function BoxAskWrap() {
-  return (
-    <>
-      <div className="box-ask-wrap">
-        <span className="hafl-plus pst-left_bot item_bot wow bounceInScale"></span>
-        <span className="hafl-plus pst-right_bot item_bot wow bounceInScale"></span>
-        <span className="hafl-plus pst-left_top item_top wow bounceInScale"></span>
-        <span className="hafl-plus pst-right_top item_top wow bounceInScale"></span>
       </div>
     </>
   );

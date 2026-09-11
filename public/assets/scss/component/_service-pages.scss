@@ -69,6 +69,41 @@
 .contracted-it__responsibility-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+
+.contracted-it__responsibility-list {
+  border-top: 1px solid var(--line);
+}
+
+.contracted-it__responsibility {
+  border-bottom: 1px solid var(--line);
+}
+
+.contracted-it__responsibility > button {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+  padding: 24px 8px;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  text-align: left;
+}
+
+.contracted-it__responsibility > button { cursor: pointer; }
+.contracted-it__responsibility:not(.is-open):hover { background: rgba(255, 255, 255, 0.03); }
+.contracted-it__responsibility > button span { color: var(--text-6); font-style: normal; transition: color 0.3s ease; }
+.contracted-it__responsibility > button i { color: var(--text-5); font-style: normal; font-size: 24px; transition: transform 0.25s ease; }
+.contracted-it__responsibility > button h3 { margin: 0; color: var(--text-6); transition: color 0.3s ease; }
+.contracted-it__responsibility-detail { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 0.3s ease, opacity 0.25s ease; }
+.contracted-it__responsibility-detail p { min-height: 0; max-width: 660px; margin: 0 48px 0 68px; overflow: hidden; color: var(--text-6); }
+.contracted-it__responsibility.is-open { background: linear-gradient(90deg, rgba(27, 78, 245, 0.12), transparent 62%); }
+.contracted-it__responsibility.is-open > button span { color: var(--primary); }
+.contracted-it__responsibility.is-open > button h3 { color: var(--white); }
+.contracted-it__responsibility.is-open > button i { transform: rotate(45deg); }
+.contracted-it__responsibility.is-open .contracted-it__responsibility-detail { grid-template-rows: 1fr; opacity: 1; }
+.contracted-it__responsibility.is-open .contracted-it__responsibility-detail p { padding-bottom: 24px; }
 .contracted-it__responsibility-card:first-child {
   grid-column: span 2;
   background: linear-gradient(
@@ -84,6 +119,15 @@
 .contracted-it__model-card {
   position: relative;
   overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.contracted-it__model-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--text-5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 .contracted-it__model-card::after {
   content: "";
@@ -121,8 +165,7 @@
   justify-content: space-between;
   transition: 0.3s;
 }
-.contracted-it__responsibility-card:hover,
-.contracted-it__model-card:hover {
+.contracted-it__responsibility-card:hover {
   transform: translateY(-4px);
   border-color: var(--text-5);
 }
@@ -135,10 +178,14 @@
 .contracted-it__plan h3 {
   color: var(--white);
 }
-.contracted-it__model-grid,
 .contracted-it__plan-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.contracted-it__model-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 .contracted-it__model-card {
@@ -146,19 +193,29 @@
 }
 .contracted-it__model-card > span {
   display: block;
-  margin-bottom: 28px;
-  font-size: 22px;
+  margin-bottom: 32px;
+  font-size: 26px;
 }
 .contracted-it__model-card h3 {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .contracted-it__plan {
   position: relative;
   display: flex;
   flex-direction: column;
   padding: 32px 28px;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.contracted-it__plan:hover {
+  transform: translateY(-4px);
+  border-color: var(--text-5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 .contracted-it__plan--recommended {
+  z-index: 1;
   border-color: var(--text-5);
   box-shadow: 0 0 40px rgba(27, 78, 245, 0.18);
   background: linear-gradient(
@@ -167,14 +224,29 @@
     rgba(20, 20, 21, 0.95) 42%
   );
 }
+.contracted-it__plan--recommended:hover {
+  box-shadow: 0 16px 48px rgba(27, 78, 245, 0.28);
+}
+@include res(lg, min) {
+  .contracted-it__plan--recommended {
+    transform: scale(1.03);
+  }
+  .contracted-it__plan--recommended:hover {
+    transform: scale(1.03) translateY(-4px);
+  }
+}
 .contracted-it__badge {
   position: absolute;
-  top: -11px;
-  right: 22px;
-  padding: 4px 10px;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 18px;
   border-radius: 999px;
   color: var(--white);
+  font-weight: 600;
+  white-space: nowrap;
   background: var(--primary);
+  box-shadow: 0 4px 16px rgba(27, 78, 245, 0.4);
 }
 .contracted-it__plan h3 {
   margin-bottom: 14px;
@@ -184,7 +256,7 @@
 }
 .contracted-it__plan ul {
   display: grid;
-  gap: 12px;
+  gap: 16px;
   margin-bottom: 30px;
 }
 .contracted-it__plan li {
@@ -243,6 +315,14 @@
   .contracted-it__model-card,
   .contracted-it__plan {
     padding: 22px 20px;
+  }
+  .contracted-it__responsibility > button { grid-template-columns: 34px minmax(0, 1fr) auto; gap: 12px; padding: 20px 16px; }
+  .contracted-it__responsibility > button h3 { font-size: 16px; }
+  .contracted-it__responsibility > button i { font-size: 20px; }
+  .contracted-it__responsibility-detail p { margin: 0 16px 0 46px; }
+  .contracted-it__model-card > span {
+    margin-bottom: 20px;
+    font-size: 22px;
   }
   .contracted-it__cta {
     display: grid;

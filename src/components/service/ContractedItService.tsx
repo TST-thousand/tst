@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 const responsibilities = [
   "Компьютер ба төхөөрөмжийн тохиргоо",
@@ -9,6 +12,16 @@ const responsibilities = [
   "Хэрэглэгчийн өдөр тутмын техникийн туслалцаа",
   "IT хөрөнгийн бүртгэл ба удирдлага",
   "Суурь кибер аюулгүй байдлын дэмжлэг",
+];
+const responsibilityDescriptions = [
+  "Ажлын байрны компьютер, дагалдах төхөөрөмжийн тохиргоо болон өдөр тутмын найдвартай ажиллагааг хариуцна.",
+  "Програм хангамжийн суурилуулалт, оношилгоо, шинэчлэлт болон алдааг шуурхай шийдвэрлэнэ.",
+  "Дотоод сүлжээ, LAN болон Wi-Fi орчны тасралтгүй, аюулгүй холболтыг хянаж сайжруулна.",
+  "Принтер болон бусад дагалдах төхөөрөмжийн ашиглалт, холболт, засвар үйлчилгээг зохион байгуулна.",
+  "Камер болон техникийн дэд бүтцийн хэвийн ажиллагааг тогтмол шалгаж, шаардлагатай арга хэмжээг авна.",
+  "Хэрэглэгчдэд ойлгомжтой, хурдан техникийн туслалцаа үзүүлж, ажлын тасалдлыг багасгана.",
+  "Байгууллагын IT тоног төхөөрөмжийн бүртгэл, төлөвлөлт, ашиглалтын хяналтыг нэгтгэн удирдана.",
+  "Үндсэн хамгаалалтын тохиргоо, шинэчлэлт болон эрсдэлийн хяналтаар мэдээллийн аюулгүй байдлыг дэмжинэ.",
 ];
 const serviceModels = [
   ["Алсын дэмжлэг", "Шуурхай оношилгоо, зөвлөгөөг зайнаас үзүүлнэ."],
@@ -56,6 +69,10 @@ const plans = [
 ];
 
 export default function ContractedItService() {
+  const [openResponsibility, setOpenResponsibility] = useState<number | null>(
+    null,
+  );
+
   return (
     <section className="section-contracted-it flat-spacing-2">
       <div className="container">
@@ -73,14 +90,32 @@ export default function ContractedItService() {
             </p>
             <h2 className="font-3 h3">IT Support Engineer-ийн үүрэг</h2>
           </div>
-          <div className="contracted-it__responsibility-grid">
+          <div className="contracted-it__responsibility-list">
             {responsibilities.map((title, index) => (
               <article
                 key={title}
-                className="contracted-it__responsibility-card"
+                className={`contracted-it__responsibility ${openResponsibility === index ? "is-open" : ""}`}
               >
-                <span>0{index + 1}</span>
-                <h3 className="h6 font-3">{title}</h3>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setOpenResponsibility(
+                      openResponsibility === index ? null : index,
+                    )
+                  }
+                  aria-expanded={openResponsibility === index}
+                  aria-controls={`responsibility-${index}`}
+                >
+                  <span>0{index + 1}</span>
+                  <h3 className="h5 font-3">{title}</h3>
+                  <i aria-hidden="true">+</i>
+                </button>
+                <div
+                  id={`responsibility-${index}`}
+                  className="contracted-it__responsibility-detail"
+                >
+                  <p>{responsibilityDescriptions[index]}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -115,11 +150,6 @@ export default function ContractedItService() {
                 key={plan.name}
                 className={`contracted-it__plan ${plan.recommended ? "contracted-it__plan--recommended" : ""}`}
               >
-                {plan.recommended && (
-                  <p className="contracted-it__badge text-caption font-2">
-                    САНАЛ БОЛГОХ
-                  </p>
-                )}
                 <h3 className="font-3 h4">{plan.name}</h3>
                 <p>{plan.description}</p>
                 <span className="br-line has-dot" />
@@ -129,7 +159,7 @@ export default function ContractedItService() {
                   ))}
                 </ul>
                 <Link
-                  href="/contact-us"
+                  href={`/contact-us?plan=${encodeURIComponent(plan.name)}#contact-form`}
                   className="tf-btn text-body-3 style-2 animate-btn animate-dark"
                 >
                   Үнийн санал авах

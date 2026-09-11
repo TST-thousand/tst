@@ -1,16 +1,16 @@
 import { SectHeader } from "@/src/components/section/SectHeader";
 import { SectTagline } from "@/src/components/section/SectTagline";
-import { SectBottom } from "@/src/components/section/SectBottom";
 import { benefitItems } from "@data/benefit";
 import Image from "next/image";
 
 export default function BenefitSection() {
   return (
     <>
-      <section className="section-benefit">
+      <section className="section-benefit" id="benefits">
         <SectHeader value={3} label="BENEFITS" />
         <span className="br-line"></span>
         <SectTagline
+          prominent
           name="Үйл ажиллагааны чиглэл
 "
         />
@@ -72,8 +72,6 @@ export function MainBenefitSection() {
                 </div>
               ))}
             </div>
-            <span className="hafl-plus pst-left_bot item_bot wow bounceInScale"></span>
-            <span className="hafl-plus pst-right_bot item_bot wow bounceInScale"></span>
           </div>
         </div>
       </div>

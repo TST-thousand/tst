@@ -8,10 +8,22 @@
 
   .header-left {
     padding-left: 15px;
+
+    img {
+      width: 44px;
+      height: 44px;
+    }
   }
 
   .header-right {
     padding-right: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .tf-header .header-left img {
+    width: 34px;
+    height: 34px;
   }
 }
 

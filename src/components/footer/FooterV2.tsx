@@ -5,13 +5,10 @@ export default function FooterV2() {
     <>
       <footer className="tf-footer">
         <div className="container">
-          <div className="has-hafl_plus">
-            <span className="hafl-plus pst-left_bot item_bot wow bounceInScale"></span>
-            <span className="hafl-plus pst-right_bot item_bot wow bounceInScale"></span>
-          </div>
+          <div className="has-hafl_plus"></div>
         </div>
         <span className="br-line"></span>
-        <div className="sect-bottom">
+        {/* <div className="sect-bottom">
           <div className="container">
             <div className="box-hacker has-overlay_linear mx-1">
               <p className="hacker-text text-caption font-2 text-uppercase hackerText">
@@ -22,7 +19,7 @@ export default function FooterV2() {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
         <span className="br-line"></span>
         {/* <div className="footer-body">
                     <div className="container">

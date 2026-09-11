@@ -1,28 +1,26 @@
 import Layout from "@/src/components/layout/Layout";
 import BenefitSectionV2 from "@/src/components/section/BenefitSectionV2";
 import BreakSection from "@/src/components/section/BreakSection";
+import CompanyFactsSection from "@/src/components/section/CompanyFactsSection";
 import HeroAbout from "@/src/components/section/HeroAbout";
-import ImageTextSection from "@/src/components/section/ImageTextSection";
 import PageTitle from "@/src/components/section/PageTitle";
-import TeamSection from "@/src/components/section/TeamSection";
-import { MainTestimonialSection } from "@/src/components/section/TestimonialSection";
 
 export default function PageAboutUs() {
   return (
     <>
       <Layout>
-        <PageTitle name="БИДНИЙ ТУХАЙ" />
-        <HeroAbout />
-        <BreakSection />
-        <BenefitSectionV2 />
-        <BreakSection />
-        {/* <TeamSection /> */}
-        <BreakSection />
-        <section className="section-testimonial tes-2 flat-spacing-3">
-          <MainTestimonialSection />
-        </section>
-        <BreakSection />
-        {/* <ImageTextSection /> */}
+        <div className="about-page">
+          <PageTitle name="БИДНИЙ ТУХАЙ" />
+          <HeroAbout />
+          <BreakSection />
+          <BenefitSectionV2 />
+          <BreakSection />
+          <BreakSection />
+          <section className="section-testimonial tes-2 flat-spacing-3">
+            <CompanyFactsSection />
+          </section>
+          <BreakSection />
+        </div>
       </Layout>
     </>
   );

@@ -1,6 +1,5 @@
 import { boxIconTextProps2 } from "@/src/data/boxIconText";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function ContactSection() {
   return (
@@ -12,7 +11,7 @@ export default function ContactSection() {
           </h2>
           <div className="row">
             {boxIconTextProps2.map((item, idx) => (
-              <div className="col-md-4" key={idx}>
+              <div className="col-sm-6 col-md-4" key={idx}>
                 <div className="box-icon-text style-2 wow fadeInUp">
                   <div className="icon">
                     <Image
